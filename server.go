@@ -12,6 +12,7 @@ var R *gin.Engine
 func InitServer() {
 	InitConfig()
 	InitLogger()
+	InitMysql()
 
 	R = gin.New()
 
