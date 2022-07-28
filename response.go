@@ -83,3 +83,7 @@ func ResErrorWithData(c *gin.Context, errorCode ErrorCode, subMsg string, data i
 	}
 	c.JSON(200, res)
 }
+
+func Res(c *gin.Context, code int, data any) {
+	c.JSON(code, data)
+}
