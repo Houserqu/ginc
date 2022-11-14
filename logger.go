@@ -73,6 +73,7 @@ func InitLogger() {
 		logrus.PanicLevel: writer,
 	}, &logrus.JSONFormatter{
 		TimestampFormat: "2006-01-02 15:04:05",
+		PrettyPrint:     viper.GetString("log.out") != "file",
 	})
 
 	Logger.AddHook(lfHook)

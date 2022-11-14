@@ -80,6 +80,21 @@ func ResCommonError(c *gin.Context, err string) {
 	c.JSON(200, res)
 }
 
+// ResError 返回固定错误码的通用错误
+func ResCommonErrorWithData(c *gin.Context, err string, data interface{}) {
+	reqId, _ := c.Get("reqId")
+
+	res := Response{
+		Code:  1,
+		Msg:   err,
+		Err:   err,
+		Data:  data,
+		ReqId: reqId,
+		Time:  time.Now().Unix(),
+	}
+	c.JSON(200, res)
+}
+
 // ResError 返回自定义错误
 func ResCustomError(c *gin.Context, err string, code int) {
 	reqId, _ := c.Get("reqId")
@@ -98,7 +113,7 @@ func ResCustomError(c *gin.Context, err string, code int) {
 // ResError 返回逻辑错误
 func ResErrorWithData(c *gin.Context, errorCode ErrorCode, subMsg string, data interface{}) {
 	msg := errorCode.Msg
-	if len(subMsg) == 0 {
+	if len(subMsg) != 0 {
 		msg = msg + "(" + subMsg + ")"
 	}
 
