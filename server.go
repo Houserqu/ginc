@@ -19,6 +19,11 @@ func InitServer() {
 	// 注册中间件
 	R.Use(gin.Recovery())
 	R.Use(AccessMiddleware())
+
+	// 监控
+	if viper.GetBool("metrics") {
+		Metrics.Use(R)
+	}
 }
 
 func Run() {
