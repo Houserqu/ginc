@@ -37,8 +37,6 @@ func SendAlertMessage(title string, message string) (err error) {
 	str, _ := json.Marshal(params)
 
 	client := resty.New()
-	_, err = client.R().
-		SetBody(str).
-		Post(viper.GetString("alert.feishu"))
+	_, err = client.R().SetBody(str).Post(hookurl)
 	return
 }
