@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-resty/resty/v2"
 	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
 	"github.com/pkg/errors"
 	"github.com/rifflock/lfshook"
@@ -82,4 +83,8 @@ func InitLogger() {
 func Log(c *gin.Context) *logrus.Entry {
 	value, _ := c.Get("reqId")
 	return Logger.WithFields(logrus.Fields{"type": "DEFAULT", "reqId": value})
+}
+
+func LogResty(resp *resty.Response) {
+	Logger.WithField("type", "REQUEST").Info(resp.Request.URL, resp.StatusCode(), string(resp.Body()))
 }
