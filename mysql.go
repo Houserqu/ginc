@@ -14,11 +14,18 @@ import (
 var Mysql *gorm.DB
 
 func InitMysql() {
+	// 日志级别
+	disableLog := viper.GetBool("mysql.disable_log")
+	logLevel := logger.Info
+	if disableLog {
+		logLevel = logger.Silent
+	}
+
 	dbLogger := logger.New(
 		Logger, // io writer（日志输出的目标，前缀和日志包含的内容——译者注）
 		logger.Config{
 			SlowThreshold:             time.Second, // 慢 SQL 阈值
-			LogLevel:                  logger.Info, // 日志级别
+			LogLevel:                  logLevel,    // 日志级别
 			IgnoreRecordNotFoundError: true,        // 忽略ErrRecordNotFound（记录未找到）错误
 			Colorful:                  false,       // 禁用彩色打印
 		},
