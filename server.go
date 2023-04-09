@@ -13,6 +13,7 @@ func InitServer() {
 	InitConfig()
 	InitLogger()
 	InitMysql()
+	InitRedis()
 
 	R = gin.New()
 
