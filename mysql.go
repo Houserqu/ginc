@@ -14,6 +14,10 @@ import (
 var Mysql *gorm.DB
 
 func InitMysql() {
+	if viper.GetString("mysql.host") == "" {
+		return
+	}
+
 	// 日志级别
 	disableLog := viper.GetBool("mysql.disable_log")
 	logLevel := logger.Info
