@@ -11,7 +11,11 @@ import (
 // 请求日志中间件
 func AccessMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		reqId := uuid.NewV4()
+		reqId := c.GetHeader("req_id")
+		if reqId == "" {
+			reqId = uuid.NewV4().String()
+		}
+
 		c.Set("reqId", reqId)
 		startTime := time.Now() // 开始时间
 
