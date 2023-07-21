@@ -20,6 +20,9 @@ func InitServer() {
 	// 注册中间件
 	R.Use(gin.Recovery())
 	R.Use(AccessMiddleware())
+	if viper.GetBool("cors.enable") {
+		R.Use(CorsMiddleware())
+	}
 
 	// 监控
 	if viper.GetBool("metrics") {
