@@ -23,6 +23,9 @@ func InitServer() {
 	if viper.GetBool("cors.enable") {
 		R.Use(CorsMiddleware())
 	}
+	if viper.GetString("api_token") != "" {
+		R.Use(CheckToken())
+	}
 
 	// 监控
 	if viper.GetBool("metrics") {
