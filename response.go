@@ -95,6 +95,21 @@ func ResCommonErrorWithData(c *gin.Context, err string, data interface{}) {
 	c.JSON(200, res)
 }
 
+// ResError 返回固定错误码的通用错误
+func ResMsgError(c *gin.Context, msg string, err error) {
+	reqId, _ := c.Get("reqId")
+
+	res := Response{
+		Code:  1000,
+		Msg:   msg,
+		Err:   err.Error(),
+		Data:  nil,
+		ReqId: reqId,
+		Time:  time.Now().Unix(),
+	}
+	c.JSON(200, res)
+}
+
 // ResError 返回自定义错误
 func ResCustomError(c *gin.Context, err string, code int) {
 	reqId, _ := c.Get("reqId")
