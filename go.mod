@@ -6,6 +6,7 @@ require (
 	github.com/fsnotify/fsnotify v1.5.4
 	github.com/gin-gonic/gin v1.8.1
 	github.com/lestrrat/go-file-rotatelogs v0.0.0-20180223000712-d3151e2a480f
+	github.com/nacos-group/nacos-sdk-go v1.1.4
 	github.com/penglongli/gin-metrics v0.1.10
 	github.com/pkg/errors v0.9.1
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
@@ -16,7 +17,18 @@ require (
 	gorm.io/gorm v1.23.8
 )
 
-require github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+require (
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.18 // indirect
+	github.com/buger/jsonparser v1.1.1 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+	github.com/go-errors/errors v1.0.1 // indirect
+	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af // indirect
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/zap v1.17.0 // indirect
+	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
