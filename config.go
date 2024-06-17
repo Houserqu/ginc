@@ -13,7 +13,7 @@ func InitConfig() {
 	viper.AddConfigPath(".")
 
 	// 设置默认值
-	viper.SetDefault("server.addr", "0.0.0.0:8000")
+	viper.SetDefault("server.addr", "0.0.0.0:8080")
 
 	// 加载配置文件
 	err := viper.ReadInConfig()
