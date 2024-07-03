@@ -2,15 +2,24 @@ package ginc
 
 import (
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
 
 func InitConfig() {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath(".")
+	configPath := os.Getenv("CONFIG_PATH")
+	if configPath != "" {
+		log.Println("Load config file from: ", configPath)
+		viper.SetConfigFile(configPath)
+	} else {
+		log.Println("Load config file from: ./config.yaml")
+		viper.SetConfigName("config")
+		viper.SetConfigType("yaml")
+		viper.AddConfigPath(".")
+	}
 
 	// 设置默认值
 	viper.SetDefault("server.addr", "0.0.0.0:8080")
