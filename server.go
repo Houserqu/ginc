@@ -17,6 +17,10 @@ func InitServer() {
 
 	R = gin.New()
 
+	if viper.GetString("ip_header") != "" {
+		R.TrustedPlatform = viper.GetString("ip_header")
+	}
+
 	// 注册中间件
 	R.Use(gin.Recovery())
 	R.Use(AccessMiddleware())
